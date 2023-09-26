@@ -4,8 +4,7 @@
 - add items to your "\rsg-core\shared\items.lua"
 - add images to your "\rsg-inventory\html\images"
 
-['phonograph']					= {['name'] = 'tent', 			  	  		['label'] = 'tent', 				['weight'] = 50, 		['type'] = 'item', 		['image'] = 'tent.png', 				['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,		['combinable'] = nil,   ['description'] = 'camp star'},
-
+['tent']		= {['name'] = 'tent',		['label'] = ' disposable tent',			['weight'] = 100,	['type'] = 'item',	['image'] = 'tent.png',		['unique'] = false,	['useable'] = true,	['shouldClose'] = true,	['combinable'] = nil,	['level'] = 0,	['description'] = 'camping'},
 
 # Starting the resource
 - add the following to your server.cfg file : ensure rsg_tent
