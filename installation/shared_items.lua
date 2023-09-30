@@ -1,2 +1,2 @@
 	-- mobile dj
-	['phonograph']					= {['name'] = 'phonograph', 			  	  		['label'] = 'phonograph', 				['weight'] = 5000, 		['type'] = 'item', 		['image'] = 'phonograph.png', 				['unique'] = true, 		['useable'] = true, 	['shouldClose'] = true,		['combinable'] = nil,   ['description'] = 'spin the decks'},
+	['tent']					= {['name'] = 'tent', 			  	  		['label'] = 'tent', 				['weight'] = 500, 		['type'] = 'item', 		['image'] = 'tent.png', 				['unique'] = false, 		['useable'] = true, 	['shouldClose'] = true,		['combinable'] = nil,   ['description'] = 'temp camp'},
