@@ -1,38 +1,39 @@
 local RSGCore = exports['rsg-core']:GetCoreObject()
-local xSound = exports.xsound
-local isPlaying = false
 
-RSGCore.Functions.CreateUseableItem("tent", function(source, item)
-    local Player = RSGCore.Functions.GetPlayer(source)
-	local firstname = Player.PlayerData.charinfo.firstname
-    local lastname = Player.PlayerData.charinfo.lastname
-	if Player.Functions.RemoveItem(item.name, 0, item.slot) then
-        TriggerClientEvent("rsg_tent:client:placeDJEquipment", source, item.name)
-		TriggerEvent('rsg-log:server:CreateLog', 'camp', 'CAMPING ⛺', 'yellow', firstname..' '..lastname..' IS SETTING UP CAMP ⛺')
+local Objects = {}
+
+local function CreateObjectId()
+    if Objects then
+        local objectId = math.random(10000, 99999)
+        while Objects[objectId] do
+            objectId = math.random(10000, 99999)
+        end
+        return objectId
+    else
+        local objectId = math.random(10000, 99999)
+        return objectId
     end
-end)
+end
 
+RSGCore.Functions.CreateUseableItem('tent', function(source, item)TriggerClientEvent("tent:Client:spawnbag", source)end)
 
-RegisterNetEvent('rsg_tent:server:pickedup', function(entity)
+RegisterNetEvent('tent:Server:SpawnAmbulanceBag', function(type)
     local src = source
-    xSound:Destroy(-1, tostring(entity))
+    local objectId = CreateObjectId()
+    Objects[objectId] = type
+    TriggerClientEvent("tent:Client:SpawnAmbulanceBag", src, objectId, type, src)
 end)
 
-
-RegisterNetEvent('rsg_tent:Server:RemoveItem', function(item, amount)
+RegisterNetEvent('tent:Server:RemoveItem', function(item, amount)
     local src = source
     local Player = RSGCore.Functions.GetPlayer(src)
     Player.Functions.RemoveItem(item, amount)
-	
 end)
 
-RegisterServerEvent('rsg_tent:server:pickeupdecks')
-AddEventHandler('rsg_tent:server:pickeupdecks', function()
-	local src = source
+RegisterNetEvent('tent:Server:AddItem', function(item, amount)
+    local src = source
     local Player = RSGCore.Functions.GetPlayer(src)
-	local firstname = Player.PlayerData.charinfo.firstname
-    local lastname = Player.PlayerData.charinfo.lastname
-	Player.Functions.AddItem('tent', 0)
-	TriggerClientEvent('inventory:client:ItemBox', src, RSGCore.Shared.Items[tent], "add")
-	
+    Player.Functions.AddItem(item, amount)
 end)
+
+

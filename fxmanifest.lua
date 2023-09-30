@@ -1,11 +1,34 @@
-fx_version "adamant"
-games {"rdr3"}
+game 'rdr3'
+fx_version 'adamant'
 rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aware my resources *will* become incompatible once RedM ships.'
 
-description 'Rexshack Gaming: camp'
+author 'marcus'
+description 'A Script That Would Allow medics To carry a storagebox'
+version '1.0.2'
 
-client_script 'client/client.lua'
+shared_scripts {
+    "configs/**.lua"
+}
 
-server_script 'server/server.lua'
+server_script {
+    "server/**.lua"
+}
 
-shared_script 'config.lua'
+client_script {
+    "client/**.lua"
+}
+
+escrow_ignore {
+    "configs/**.lua",
+    "README.lua"
+}
+
+
+
+dependencies {
+    'rsg-core',
+    'rsg-target'
+}
+
+lua54 'yes'
+this_is_a_map 'no'
