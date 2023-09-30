@@ -1,7 +1,7 @@
 Config = {}
 
 
--- EMS Bag
+
 
 Config.Bag = {
     AmbulanceBag = {
